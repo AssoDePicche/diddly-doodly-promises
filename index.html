@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>App</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -42,109 +43,85 @@
               <th scope="col">Book</th>
               <th scope="col">Publisher</th>
               <th scope="col">Cover Price</th>
-              <th scope="col">Edit</th>
+              <th scope="col">Details</th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
-            <tr class="align-middle">
-              <th scope="row">1</th>
-              <td>The Amazing Spider Man #12</td>
-              <td>Marvel</td>
-              <td>R$ 64,00</td>
-              <td>Icon</td>
-            </tr>
-          </tbody>
+          <tbody class="table-group-divider"></tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </nav>
       </div>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="@getbootstrap">Edit</button>
-
-      <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="modal-label">Edit book</h1>
+              <h1 class="modal-title fs-5" id="editModalLabel">Edit book</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div id="book-form">
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" maxlength="255">
+                  <input type="text" class="form-control" id="editBookName" maxlength="255">
                 </div>
 
                 <div class="row g-2 mb-3">
                   <div class="col-md">
                     <div class="form-floating">
-                      <input type="date" class="form-control" id="published-at">
-                      <label for="published-at">Published at</label>
+                      <input type="date" class="form-control" id="editBookPublishedAt">
+                      <label for="editBookPublishedAt">Published at</label>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <select class="form-select" id="publisher">
-                        <option selected>Select a Publisher</option>
-                        <option value="1">Panini</option>
-                        <option value="2">Pipoca &amp; Nanquim</option>
-                        <option value="3">JBC</option>
-                        <option value="4">Devir</option>
-                        <option value="5">Companhia das Letras</option>
-                        <option value="6">HarperCollins</option>
-                        <option value="7">Arqueiro</option>
-                        <option value="8">Intrinseca</option>
-                        <option value="9">Darkside</option>
-                        <option value="10">Antofágica</option>
-                        <option value="11">Principis</option>
-                      </select>
-                      <label for="publisher">Publisher</label>
+                      <select class="form-select" id="editBookPublisher"></select>
+                      <label for="editBookPublisher">Publisher</label>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <input type="number" class="form-control" id="cover-price" value="0.00" min="0.00" step="0.5">
-                      <label for="cover-price">Cover price</label>
+                      <input type="number" class="form-control" id="editBookCoverPrice" value="0.00" min="0.00" step="0.5">
+                      <label for="editBookCoverPrice">Cover price</label>
                     </div>
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <label for="description" class="col-form-label">Description</label>
-                  <textarea class="form-control" id="book-description" style="resize: none"></textarea>
+                  <textarea class="form-control" id="editBookDescription" style="resize: none"></textarea>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Delete</button>
-              <button type="button" class="btn btn-primary">Update</button>
+              <button id="" type="button" class="btn btn-dark">
+                <i class="bi bi-trash"></i>
+                Remove
+              </button>
+              <button id="" type="button" class="btn btn-primary">
+                <i class="bi bi-floppy"></i>
+                Save Changes
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-book" data-bs-whatever="@getbootstrap">New</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newBookModal">
+        <i class="bi bi-plus-lg"></i>
+        New
+      </button>
 
-      <div class="modal fade" id="new-book" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+      <div class="modal fade" id="newBookModal" tabindex="-1" aria-labelledby="newBookModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="modal-label">New Book</h1>
+              <h1 class="modal-title fs-5" id="newBookModalLabel">New Book</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div id="book__form">
                 <div class="mb-3">
                   <label for="name" class="form-label">Book</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="name-type-hint" maxlength="255">
+                  <input type="text" class="form-control" id="newBookName" aria-describedby="name-type-hint" maxlength="255">
                   <div id="name-type-hint" class="form-text">Book or Comic Book name.</div>
                 </div>
 
@@ -152,31 +129,18 @@
                   <div class="col-md">
                     <div class="form-floating">
                       <input type="date" class="form-control" id="published-at">
-                      <label for="published-at">Published at</label>
+                      <label for="newBookPublishedAt">Published at</label>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <select class="form-select" id="publisher">
-                        <option selected>Select a Publisher</option>
-                        <option value="1">Panini</option>
-                        <option value="2">Pipoca &amp; Nanquim</option>
-                        <option value="3">JBC</option>
-                        <option value="4">Devir</option>
-                        <option value="5">Companhia das Letras</option>
-                        <option value="6">HarperCollins</option>
-                        <option value="7">Arqueiro</option>
-                        <option value="8">Intrinseca</option>
-                        <option value="9">Darkside</option>
-                        <option value="10">Antofágica</option>
-                        <option value="11">Principis</option>
-                      </select>
+                      <select class="form-select" id="newBookPublisher"></select>
                       <label for="publisher">Publisher</label>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <input type="number" class="form-control" id="cover-price" value="0.00" min="0.00" step="0.5">
+                      <input type="number" class="form-control" id="newBookCoverPrice" value="0.00" min="0.00" step="0.5">
                       <label for="cover-price">Cover price</label>
                     </div>
                   </div>
@@ -184,13 +148,15 @@
 
                 <div class="mb-3">
                   <label for="description" class="col-form-label">Description</label>
-                  <textarea class="form-control" id="book-description" style="resize: none"></textarea>
+                  <textarea class="form-control" id="newBookDescription" style="resize: none"></textarea>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save</button>
+              <button id="saveNewBook" type="button" class="btn btn-primary">
+                <i class="bi bi-floppy"></i>
+                Save
+              </button>
             </div>
           </div>
         </div>
@@ -200,36 +166,36 @@
     <div id="users__page" style="display: none">
       <div id="login-form" style="display: none">
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username">
+          <label for="loginUsername" class="form-label">Username</label>
+          <input type="text" class="form-control" id="loginUsername">
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" minlength="8">
+          <label for="loginPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="loginPassword" minlength="8">
         </div>
         <div class="d-grid gap-2 d-md-block">
-          <button type="submit" class="btn btn-primary" id="submit-login">Login</button>
+          <button type="submit" class="btn btn-primary" id="loginButton">Login</button>
           <button class="btn btn-link">Don't have an account yet? Sign up</button>
         </div>
       </div>
 
       <div id="signup-form">
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username" maxlength="32">
+          <label for="signupUsername" class="form-label">Username</label>
+          <input type="text" class="form-control" id="signupUsername" maxlength="32">
         </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="email-type-hint" maxlength="255">
+          <label for="signupEmail" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="signupEmail" aria-describedby="email-type-hint" maxlength="255">
           <div id="email-type-hint" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" minlength="8">
+          <label for="signupPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="signupPassword" minlength="8">
         </div>
         <div>
-          <button type="submit" class="btn btn-primary btn-md center-block" id="submit-signup">Signup</button>
+          <button type="submit" class="btn btn-primary btn-md center-block" id="signupButton">Signup</button>
           <button class="btn btn-link btn-md center-block">Already have an account? Sign in</button>
         </div>
       </div>
