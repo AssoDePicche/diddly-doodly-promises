@@ -69,52 +69,33 @@
 </nav>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="@getbootstrap">Edit</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <h1 class="modal-title fs-5" id="modal-label">Edit book</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<form id="book-form">
+<div id="book-form">
 <div class="mb-3">
-    <label for="name" class="form-label">Book</label>
-    <input type="text" class="form-control" id="name" aria-describedby="name-type-hint" maxlength="255" required>
-    <div id="name-type-hint" class="form-text">Book or Comic Book name.</div>
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" maxlength="255" >
   </div>
 
   <div class="row g-2 mb-3">
   <div class="col-md">
     <div class="form-floating">
-      <input type="date" class="form-control" id="floatingInputGrid" />
-      <label for="floatingInputGrid">Published at</label>
+      <input type="date" class="form-control" id="published-at" />
+      <label for="published-at">Published at</label>
     </div>
   </div>
   <div class="col-md">
     <div class="form-floating">
-      <select class="form-select" id="floatingSelectGrid">
+      <select class="form-select" id="publisher">
         <option selected>Select a Publisher</option>
         <option value="1">Panini</option>
         <option value="2">Pipoca &amp; Nanquim</option>
@@ -128,52 +109,115 @@
         <option value="10">Antofágica</option>
         <option value="11">Principis</option>
       </select>
-      <label for="floatingSelectGrid">Publisher</label>
+      <label for="publisher">Publisher</label>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="number" class="form-control" id="cover-price" value="0.00" min="0.00" step="0.5" />
+      <label for="cover-price">Cover price</label>
     </div>
   </div>
 </div>
 
-  <div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;resize: none"></textarea>
-  <label for="floatingTextarea2">Description</label>
+  <div class="mb-3">
+  <label for="description" class="col-form-label">Description</label>
+  <textarea class="form-control" placeholder="" id="book-description" style="resize: none"></textarea>
 </div>
 
-</form>
+</div>
 
-<form id="login-form" style="display:none">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="book-form">
+<div class="mb-3">
+    <label for="name" class="form-label">Book</label>
+    <input type="text" class="form-control" id="name" aria-describedby="name-type-hint" maxlength="255" >
+    <div id="name-type-hint" class="form-text">Book or Comic Book name.</div>
+  </div>
+
+  <div class="row g-2 mb-3">
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="date" class="form-control" id="published-at" />
+      <label for="published-at">Published at</label>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="form-floating">
+      <select class="form-select" id="publisher">
+        <option selected>Select a Publisher</option>
+        <option value="1">Panini</option>
+        <option value="2">Pipoca &amp; Nanquim</option>
+        <option value="3">JBC</option>
+        <option value="4">Devir</option>
+        <option value="5">Companhia das Letras</option>
+        <option value="6">HarperCollins</option>
+        <option value="7">Arqueiro</option>
+        <option value="8">Intrinseca</option>
+        <option value="9">Darkside</option>
+        <option value="10">Antofágica</option>
+        <option value="11">Principis</option>
+      </select>
+      <label for="publisher">Publisher</label>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="number" class="form-control" id="cover-price" value="0.00" min="0.00" step="0.5" />
+      <label for="cover-price">Cover price</label>
+    </div>
+  </div>
+</div>
+
   <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="email-type-hint" maxlength="255" required>
-    <div id="email-type-hint" class="form-text">We'll never share your email with anyone else.</div>
+  <label for="description" class="col-form-label">Description</label>
+  <textarea class="form-control" placeholder="" id="book-description" style="resize: none"></textarea>
+</div>
+
+</div>
+
+<div id="login-form" style="display:none">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" >
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" minlength="8" required>
+    <input type="password" class="form-control" id="password" minlength="8" >
   </div>
-  <div>
+  <div class="d-grid gap-2 d-md-block">
   <button type="submit" class="btn btn-primary" id="submit-login">Login</button>
-  <p><a>Signup</a></p>
+  <button class="btn btn-link">Don't have an account yet? Sign up</button>
   </div>
-</form>
+</div>
 
-<form id="signup-form">
+<div id="signup-form">
 <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" maxlength="32" required>
+    <input type="text" class="form-control" id="username" maxlength="32" >
   </div>
 
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="email-type-hint" maxlength="255" required>
+    <input type="email" class="form-control" id="email" aria-describedby="email-type-hint" maxlength="255" >
     <div id="email-type-hint" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" minlength="8" required>
+    <input type="password" class="form-control" id="password" minlength="8" >
   </div>
   <div>
-  <button type="submit" class="btn btn-primary" id="submit-signup">Signup</button>
-  <p><a>Login</a></p>
+  <button type="submit" class="btn btn-primary btn-md center-block" id="submit-signup">Signup</button>
+  <button class="btn btn-link btn-md center-block">Already have an account? Sign in</button>
   </div>
   </main>
 
