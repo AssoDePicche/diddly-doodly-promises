@@ -1,4 +1,6 @@
-const createOptions = (method, body) => {
+import { Cookies } from "./cookies.js";
+
+const createOptions = (method, body, authorization = false) => {
   const options = {
     headers: {
       'Content-Type': 'application/json'
@@ -11,29 +13,15 @@ const createOptions = (method, body) => {
     options.body = JSON.stringify(body);
   }
 
+  if (authorization === true) {
+    options.headers.Authorization = 'Bearer ' + Cookies.contains("session");
+  }
+
   return options;
 };
 
-export const cookie = (name) => {
-  if (!document.cookie) {
-    return null;
-  }
-
-  const cookies = document.cookie.split('; ');
-
-  const pattern = encodeURIComponent(name) + '=';
-
-  for (const cookie of cookies) {
-    if (cookie.startsWith(pattern)) {
-      return decodeURIComponent(cookie.slice(pattern.length));
-    }
-  }
-
-  return null;
-};
-
-export const request = async (method, url, body = null) => {
-  const response = await fetch(url, createOptions(method, body));
+export const request = async (method, url, body = null, authorization = false) => {
+  const response = await fetch(url, createOptions(method, body, authorization));
 
   return await response.json();
 };
