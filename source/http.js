@@ -13,6 +13,10 @@ const createOptions = (method, body, authorization = false) => {
     options.body = JSON.stringify(body);
   }
 
+  if (method === "POST") {
+    options.headers.Accept = 'application/json';
+  }
+
   if (authorization === true) {
     options.headers.Authorization = 'Bearer ' + Cookies.contains("session");
   }
@@ -21,7 +25,12 @@ const createOptions = (method, body, authorization = false) => {
 };
 
 export const request = async (method, url, body = null, authorization = false) => {
+  try {
   const response = await fetch(url, createOptions(method, body, authorization));
 
   return await response.json();
+     } catch (exception) {
+       console.log(exception);
+       return null;
+     }
 };
