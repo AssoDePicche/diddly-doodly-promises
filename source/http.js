@@ -1,12 +1,11 @@
-import { Cookies } from "./cookies.js";
-
-const createOptions = (method, body, authorization = false) => {
+const createOptions = (method, body, authorization) => {
   const options = {
     headers: {
       'Content-Type': 'application/json'
     },
     method: method,
-    credentials: 'same-origin'
+    credentials: 'include',
+    mode: 'navigate'
   };
 
   if (method !== "GET" && body) {
@@ -17,20 +16,33 @@ const createOptions = (method, body, authorization = false) => {
     options.headers.Accept = 'application/json';
   }
 
-  if (authorization === true) {
-    options.headers.Authorization = 'Bearer ' + Cookies.contains("session");
+  if (authorization) {
+    options.headers.Authorization = `Bearer ${authorization}`;
   }
 
   return options;
 };
 
-export const request = async (method, url, body = null, authorization = false) => {
+export const request = async (method, url, body = null, authorization = null) => {
   try {
-  const response = await fetch(url, createOptions(method, body, authorization));
+    const options = createOptions(method, body, authorization);
 
-  return await response.json();
-     } catch (exception) {
-       console.log(exception);
-       return null;
-     }
+    const endpoint = `http://localhost:8080${url.startsWith('/') ? url : '/' + url}`;
+
+    const response = await fetch(`${endpoint}`, options);
+
+    console.log(response)
+
+    const contentType = response.headers.get('Content-Type');
+
+    if (contentType && contentType.includes('application/json')) {
+      return await response.json();
+    }
+
+    return await response.text();
+  } catch (exception) {
+    console.log(exception);
+
+    return null;
+  }
 };
